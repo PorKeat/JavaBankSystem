@@ -69,8 +69,12 @@ public class Account implements BankingService{
 
     @Override
     public void transactionHistory() {
-        for (String i: history){
-            System.out.println(i);
+        if (history.isEmpty()){
+            System.out.println("[!] Don't have any transaction yet");
+        }else{
+            for (String i: history){
+                System.out.println(i);
+            }
         }
     }
 }
