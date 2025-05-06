@@ -31,12 +31,13 @@ public class View {
         System.out.println("1. Deposit");
         System.out.println("2. Withdraw");
         System.out.println("3. Show Balance");
+        System.out.println("4. Transaction History");
         if (type.equals("saving")){
-            System.out.println("4. Back");
+            System.out.println("5. Back");
         }
         if (type.equals("credit")){
-            System.out.println("4. Transfer");
-            System.out.println("5. Back");
+            System.out.println("5. Transfer");
+            System.out.println("6. Back");
         }
     }
 
@@ -59,7 +60,8 @@ public class View {
                                 case 1 -> savingAccount.deposit();
                                 case 2 -> savingAccount.withDraw();
                                 case 3 -> savingAccount.showBalance();
-                                case 4 -> {
+                                case 4 -> savingAccount.transactionHistory();
+                                case 5 -> {
                                     break inner;
                                 }
                             }
@@ -75,8 +77,9 @@ public class View {
                                 case 1 -> creditAccount.deposit();
                                 case 2 -> creditAccount.withDraw();
                                 case 3 -> creditAccount.showBalance();
-                                case 4 -> creditAccount.transfer(savingAccount);
-                                case 5 -> {
+                                case 4 ->  creditAccount.transactionHistory();
+                                case 5 -> creditAccount.transfer(savingAccount);
+                                case 6 -> {
                                     break inner;
                                 }
                             }
