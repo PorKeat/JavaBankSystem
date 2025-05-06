@@ -107,8 +107,8 @@ public class View {
                     default -> System.out.println("[!] Invalid Input");
                 }
             }
-        }catch (Exception e){
-            System.out.println(e.getMessage());
+        }catch (NullPointerException e){
+            System.out.println("[!] Invalid Input");
         }
     }
 
