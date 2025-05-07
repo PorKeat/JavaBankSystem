@@ -18,7 +18,6 @@ public class Account implements BankingService{
     private List<String> history = new ArrayList<>();
     private final static Scanner scanner = new Scanner(System.in);
 
-
     @Override
     public void deposit() {
         try{
@@ -26,10 +25,10 @@ public class Account implements BankingService{
             BigDecimal amount = scanner.nextBigDecimal();
             if(amount.compareTo(BigDecimal.ZERO)>0){
                 balance = balance.add(amount);
-                System.out.println("[+] Deposit Successfully Into " + accountType + " New Balance: " + balance);
+                System.out.println("[+] Deposit Successfully Into " + accountType + " New Balance: $" + balance);
                 history.add("[+] Deposit Amount [ $"+amount+" ] Into "+accountType+" At "+ LocalDate.now());
             }else{
-                System.out.println("[!] You can't deposit 0 or smaller than 0");
+                System.out.println("[!] You can't deposit $0 or smaller than $0");
             }
         }catch (InputMismatchException e){
             System.out.println("[!] Invalid Input");
@@ -43,7 +42,7 @@ public class Account implements BankingService{
             BigDecimal amount = scanner.nextBigDecimal();
             if (amount.compareTo(BigDecimal.ZERO)>0 && amount.compareTo(balance)<=0){
                 balance = balance.subtract(amount);
-                System.out.println("[+] Withdraw Successful From " + accountType + " New Balance: " + balance);
+                System.out.println("[+] Withdraw Successful From " + accountType + " New Balance: $" + balance);
                 history.add("[+] Withdraw Amount [ $"+amount+" ] From "+accountType+" At "+ LocalDate.now());
             }else if(amount.compareTo(balance) > 0){
                 System.out.println("[!] You Can't withdraw more than your balance");
@@ -57,18 +56,18 @@ public class Account implements BankingService{
 
     @Override
     public void showBalance() {
-        System.out.println("[+] Your Balance: "+ balance);
+        System.out.println("[+] Your Balance: $"+ balance);
     }
 
     @Override
     public void transfer(Account account) {
         try {
-            System.out.println("[+] Insert Money To Transfer To "+ account.accountType +": ");
+            System.out.print("[+] Insert Money To Transfer To "+ account.accountType +": ");
             BigDecimal amount = scanner.nextBigDecimal();
             if (amount.compareTo(BigDecimal.ZERO)>0 && amount.compareTo(balance)<=0){
                 account.setBalance(account.getBalance().add(amount));
                 balance = balance.subtract(amount);
-                System.out.println("[+] Transfer Successful From " + accountType + " New Balance: " + account.balance);
+                System.out.println("[+] Transfer Successful From " + accountType + " Your Balance Now: $" + balance);
                 history.add("[+] Transfer Amount [ $"+amount+" ] From "+accountType+" To"+account.accountType+ " At "+ LocalDate.now());
             }else if(amount.compareTo(balance) > 0){
                 System.out.println("[!] You Can't transfer more than your balance");
